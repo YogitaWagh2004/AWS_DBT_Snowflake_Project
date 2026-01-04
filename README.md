@@ -10,19 +10,19 @@ The pipeline processes Airbnb listings, bookings, and hosts data through a medal
 
 ### Data Flow
 
-Source CSV Files
+    Source CSV Files
 
-↓
+         ↓
 
-AWS S3
+      AWS S3
 
-↓
+         ↓
 
-Snowflake (Staging)
+    Snowflake (Staging)
 
-↓
+         ↓
 
-Bronze Layer → Silver Layer → Gold Layer
+    Bronze Layer → Silver Layer → Gold Layer
 
 
 
@@ -151,11 +151,11 @@ Bronze Layer → Silver Layer → Gold Layer
   7. Load Source Data:
      Load CSV files from SourceData/ to Snowflake staging schema:
      
-            - **bookings.csv** → AIRBNB.STAGING.BOOKINGS
+             **bookings.csv** → AIRBNB.STAGING.BOOKINGS
      
-            - **hosts.csv** → AIRBNB.STAGING.HOSTS
+             **hosts.csv** → AIRBNB.STAGING.HOSTS
      
-            - **listings.csv** → AIRBNB.STAGING.LISTINGS
+             **listings.csv** → AIRBNB.STAGING.LISTINGS
    
 ## 🔧 Usage
 Running dbt Commands
@@ -175,92 +175,107 @@ Running dbt Commands
    
    4. Run Specific Layer
        
-          - dbt run --select bronze.*      -  Run bronze models only
+           dbt run --select bronze.*      -  Run bronze models only
        
-          - dbt run --select silver.*      -  Run silver models only
+           dbt run --select silver.*      -  Run silver models only
        
-          - dbt run --select gold.*        - Run gold models only
+           dbt run --select gold.*        - Run gold models only
     
    5. Run Tests
        
-          - dbt test
+           dbt test
        
    6. Run Snapshots 
 
-          -  dbt snapshot
+            dbt snapshot
         
    7. Generate Documentation
         
-          - dbt docs generate
-          - dbt docs serve
+           dbt docs generate
+           dbt docs serve
          
     8. Build Everything
-        - dbt build   (Runs models, tests, and snapshots)
+         dbt build   (Runs models, tests, and snapshots)
 
 
 ## 🎯 Key Features
 
 ### 1. Incremental Loading: 
    Bronze and silver models use incremental materialization to process only new/changed data:
+          
           {{ config(materialized='incremental') }}
           {% if is_incremental() %}
                 WHERE CREATED_AT > (SELECT COALESCE(MAX(CREATED_AT), '1900-01-01') FROM {{ this }})
           {% endif %}
 
-## 2. Custom Macros
-Reusable business logic:
+## 2. Custom Macros 
+   Reusable business logic:
 
 - tag() macro: Categorizes prices into 'low', 'medium', 'hig
 
-     {{ tag('CAST(PRICE_PER_NIGHT AS INT)') }} AS PRICE_PER_NIGHT_TAG
+       {{ tag('CAST(PRICE_PER_NIGHT AS INT)') }} AS PRICE_PER_NIGHT_TAG
 
 ## 3. Dynamic SQL Generation
 The OBT (One Big Table) model uses Jinja loops for maintainable joins:
-     {% set configs = [...] %}
-      SELECT {% for config in configs %}...{% endfor %}
+          
+          {% set configs = [...] %}
+          SELECT {% for config in configs %}...{% endfor %}
 
 ## 4. Slowly Changing Dimensions
 Track historical changes with timestamp-based snapshots:
+
 Valid from/to dates automatically maintained
+
 Historical data preserved for point-in-time analysis
 
 ## 5. Schema Organization
 Automatic schema separation by layer:
+
     Bronze models → AIRBNB.BRONZE.*
+    
     Silver models → AIRBNB.SILVER.*
+    
     Gold models → AIRBNB.GOLD.*
 
 ## 📈 Data Quality
 
 **Testing Strategy**
-    Source data validation tests
-    Unique key constraints
-    Not null checks
-    Referential integrity tests
-    Custom business rule tests
+
+   - Source data validation tests
+    
+   - Unique key constraints
+    
+   -  Not null checks
+    
+   - Referential integrity tests
+    
+   - Custom business rule tests
     
 ## Data Lineage
 dbt automatically tracks data lineage, showing:
 
-   Upstream dependencies
-   Downstream impacts
-   Model relationships
-   Source to consumption flow
+  - Upstream dependencies
+  
+  - Downstream impacts
+
+  - Model relationships
+    
+  - Source to consumption flow
 
 ## 🔐 Security & Best Practices
    1. Credentials Management
-       Never commit profiles.yml with credentials
-       Use environment variables for sensitive data
-       Implement role-based access control (RBAC) in Snowflake
+       - Never commit profiles.yml with credentials
+       - Use environment variables for sensitive data
+       - Implement role-based access control (RBAC) in Snowflake
    2. Code Quality
-      SQL formatting with sqlfmt
-      Version control with Git
-      Code reviews for model changes
+       - SQL formatting with sqlfmt
+       - Version control with Git
+       - Code reviews for model changes
 
    3. Performance Optimization
-      Incremental models for large datasets
-      Ephemeral models for intermediate transformations
-      Appropriate clustering keys in Snowflake
+      - Incremental models for large datasets
+      - Ephemeral models for intermediate transformations
+      - Appropriate clustering keys in Snowflake
 
 ## 🤝 Contributing
    1. Fork the repository
@@ -270,8 +285,8 @@ dbt automatically tracks data lineage, showing:
    5. Open a Pull Request
 
 ## 👤 Author
-**Project**: Airbnb Data Engineering Pipeline
-**Technologies**: Snowflake, dbt, AWS, Python
+- **Project**: Airbnb Data Engineering Pipeline
+- **Technologies**: Snowflake, dbt, AWS, Python
 
 ## 🐛 Troubleshooting
 Common Issues
@@ -286,6 +301,7 @@ Common Issues
     3. Incremental Load Issues
        Run dbt run --full-refresh to rebuild from scratch
        Verify source data timestamps
+
 
 
 
