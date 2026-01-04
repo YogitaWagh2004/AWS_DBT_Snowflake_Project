@@ -95,75 +95,97 @@ Bronze Layer → Silver Layer → Gold Layer
 ## Installation
    1. Clone the Repository
 
-       git clone <repository-url>
-       cd AWS_DBT_Snowflake
+       - git clone <repository-url>
+         cd AWS_DBT_Snowflake
       
    2. Create Virtual Environment
 
-       python -m venv .venv
-       .venv\Scripts\Activate.ps1 
+       - python -m venv .venv
+        .venv\Scripts\Activate.ps1 
 
    3. Install Dependencies
       
-       pip install -r requirements.txt
-       pip install -e .
+       - pip install -r requirements.txt
+         pip install -e .
 
       
       ## Core Dependencies:
-        dbt-core>=1.11.2
-        dbt-snowflake>=1.11.0
-        sqlfmt>=0.0.3
+         - dbt-core>=1.11.2
+         - dbt-snowflake>=1.11.0
+         - sqlfmt>=0.0.3
       
   4. Configure Snowflake Connection
 
-      Create ~/.dbt/profiles.yml:
+      - Create ~/.dbt/profiles.yml:
 
         aws_dbt_snowflake_project:
-           outputs:
-           dev:
-              account: <your-account-identifier>
-              database: AIRBNB
-              password: <your-password>
-              role: ACCOUNTADMIN
-              schema: dbt_schema
-              threads: 4
-              type: snowflake
-              user: <your-username>
-              warehouse: COMPUTE_WH
-          target: dev
+        
+        outputs:
+        
+        dev:
+        
+          account: <your-account-identifier>
+        
+          database: AIRBNB
+        
+          password: <your-password>
+          
+          role: ACCOUNTADMIN
+        
+          schema: dbt_schema
+
+          threads: 4
+
+          type: snowflake
+        
+          user: <your-username>
+          
+          warehouse: COMPUTE_WH
+        
+     target: dev
 
   5. Set Up Snowflake Database
-      Run the DDL scripts to create tables:
-      **Execute DDL/ddl.sql in Snowflake to create staging tables**
+     Run the DDL scripts to create tables:
+     **Execute DDL/ddl.sql in Snowflake to create staging tables**
 
-  6. Load Source Data
-        Load CSV files from SourceData/ to Snowflake staging schema:
-             **bookings.csv** → AIRBNB.STAGING.BOOKINGS
-             **hosts.csv** → AIRBNB.STAGING.HOSTS
-             **listings.csv** → AIRBNB.STAGING.LISTINGS
+  7. Load Source Data:
+     Load CSV files from SourceData/ to Snowflake staging schema:
+            - **bookings.csv** → AIRBNB.STAGING.BOOKINGS
+            - **hosts.csv** → AIRBNB.STAGING.HOSTS
+            - **listings.csv** → AIRBNB.STAGING.LISTINGS
    
 ## 🔧 Usage
 Running dbt Commands
-    1. Test Connection
+    
+   1. Test Connection
         cd aws_dbt_snowflake_project
         dbt debug
-    2. Install Dependencies
+    
+   2. Install Dependencies
        dbt deps
-    3. Run All Models
+    
+   3. Run All Models
        dbt run
-    4. Run Specific Layer
-       dbt run --select bronze.*      -  Run bronze models only
-       dbt run --select silver.*      -  Run silver models only
-       dbt run --select gold.*        - Run gold models only
-    5. Run Tests
-       dbt test
-    6. Run Snapshots 
-       dbt snapshot
-    7. Generate Documentation
-       dbt docs generate
-       dbt docs serve
+   
+   4. Run Specific Layer
+       - dbt run --select bronze.*      -  Run bronze models only
+       
+       - dbt run --select silver.*      -  Run silver models only
+       
+       - dbt run --select gold.*        - Run gold models only
+    
+   5. Run Tests
+       - dbt test
+      
+   6. Run Snapshots 
+      -  dbt snapshot
+        
+   7. Generate Documentation
+       - dbt docs generate
+       - dbt docs serve
+       - 
     8. Build Everything
-        dbt build  **Runs models, tests, and snapshots**
+        - dbt build  **Runs models, tests, and snapshots**
 
 
 ## 🎯 Key Features
@@ -254,6 +276,7 @@ Common Issues
     3. Incremental Load Issues
        Run dbt run --full-refresh to rebuild from scratch
        Verify source data timestamps
+
 
 
 
