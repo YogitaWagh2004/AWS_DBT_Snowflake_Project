@@ -1,4 +1,4 @@
-# 🏠 AWS Data Analytics Pipeline Project 
+# 🏠 AWS DBT Snowflake Analytics Pipeline Project 
 
 ## 📋 Overview
 
@@ -288,7 +288,7 @@ dbt automatically tracks data lineage, showing:
 ## 👤 Author
 
 - **Project**: Airbnb Data Engineering Pipeline
-- 
+ 
 - **Technologies**: Snowflake, dbt, AWS, Python
 
 ## 🐛 Troubleshooting: 
@@ -315,6 +315,7 @@ Common Issues
       Run dbt run --full-refresh to rebuild from scratch
    
       Verify source data timestamps
+
 
 
 
