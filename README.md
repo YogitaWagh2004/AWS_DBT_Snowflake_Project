@@ -51,9 +51,12 @@ Bronze Layer → Silver Layer → Gold Layer
    
    **🥉 Bronze Layer (Raw Data)**:
    Raw data ingested from staging with minimal transformations:
-         **bronze_bookings** - Raw booking transactions
-         **bronze_hosts** - Raw host information
-         **bronze_listings** - Raw property listings
+   
+   **bronze_bookings** - Raw booking transactions
+   
+   **bronze_hosts** - Raw host information
+   
+   **bronze_listings** - Raw property listings
 
    **🥈 Silver Layer (Cleaned Data)**:
    Cleaned and standardized data:
@@ -65,14 +68,19 @@ Bronze Layer → Silver Layer → Gold Layer
    **silver_listings** - Standardized listing information with price categorization
 
    **🥇 Gold Layer (Analytics-Ready)**
-        Business-ready datasets optimized for analytics:
-           **obt (One Big Table)** - Denormalized fact table joining bookings, listings, and hosts
-           **fact** - Fact table for dimensional modeling
-           -Ephemeral models for intermediate transformations
+   Business-ready datasets optimized for analytics:
+   
+   **obt (One Big Table)** - Denormalized fact table joining bookings, listings, and hosts
+   
+   **fact** - Fact table for dimensional modeling
+   
+   -Ephemeral models for intermediate transformations
 
 ## Snapshots (SCD Type 2) Slowly Changing Dimensions to track historical changes:
    **dim_bookings** - Historical booking changes
+   
    **dim_hosts** - Historical host profile changes
+   
    **dim_listings** - Historical listing changes
 
 ## 🚀 Getting Started
@@ -246,6 +254,7 @@ Common Issues
     3. Incremental Load Issues
        Run dbt run --full-refresh to rebuild from scratch
        Verify source data timestamps
+
 
 
 
