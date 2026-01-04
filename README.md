@@ -181,7 +181,7 @@ Running dbt Commands
          
    8. Build Everything
     
-          dbt build   (Runs models, tests, and snapshots)
+          dbt build   -(Runs models, tests, and snapshots)
 
 
 ## 🎯 Key Features
@@ -197,7 +197,7 @@ Running dbt Commands
 ## 2. Custom Macros 
    Reusable business logic:
 
-- tag() macro: Categorizes prices into 'low', 'medium', 'hig
+- tag() macro: Categorizes prices into 'low', 'medium', 'high'
 
        {{ tag('CAST(PRICE_PER_NIGHT AS INT)') }} AS PRICE_PER_NIGHT_TAG
 
@@ -315,6 +315,7 @@ Common Issues
       Run dbt run --full-refresh to rebuild from scratch
    
       Verify source data timestamps
+
 
 
 
