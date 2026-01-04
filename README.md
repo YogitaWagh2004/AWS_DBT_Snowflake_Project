@@ -95,18 +95,18 @@ Bronze Layer → Silver Layer → Gold Layer
 ## Installation
    1. Clone the Repository
 
-       - git clone <repository-url>
-         cd AWS_DBT_Snowflake
+           git clone <repository-url>
+           cd AWS_DBT_Snowflake
       
    2. Create Virtual Environment
 
-       - python -m venv .venv
-        .venv\Scripts\Activate.ps1 
+          python -m venv .venv
+          .venv\Scripts\Activate.ps1 
 
    3. Install Dependencies
       
-       - pip install -r requirements.txt
-         pip install -e .
+           pip install -r requirements.txt
+           pip install -e .
 
       
       ## Core Dependencies:
@@ -116,7 +116,7 @@ Bronze Layer → Silver Layer → Gold Layer
       
   4. Configure Snowflake Connection
 
-  - Create ~/.dbt/profiles.yml:
+    Create ~/.dbt/profiles.yml:
 
         aws_dbt_snowflake_project:
         
@@ -160,35 +160,42 @@ Bronze Layer → Silver Layer → Gold Layer
 ## 🔧 Usage
 Running dbt Commands
     
-    1. Test Connection
-        cd aws_dbt_snowflake_project
-        dbt debug
+   1. Test Connection
     
-    2. Install Dependencies
-       dbt deps
+          cd aws_dbt_snowflake_project
+          dbt debug
     
-    3. Run All Models
-       dbt run
+   2. Install Dependencies
+
+          dbt deps
+    
+   3. Run All Models
+
+          dbt run
    
-    4. Run Specific Layer
-       - dbt run --select bronze.*      -  Run bronze models only
+   4. Run Specific Layer
        
-       - dbt run --select silver.*      -  Run silver models only
+          - dbt run --select bronze.*      -  Run bronze models only
        
-       - dbt run --select gold.*        - Run gold models only
+          - dbt run --select silver.*      -  Run silver models only
+       
+          - dbt run --select gold.*        - Run gold models only
     
-    5. Run Tests
-       - dbt test
+   5. Run Tests
        
-    6. Run Snapshots 
-      -  dbt snapshot
+          - dbt test
+       
+   6. Run Snapshots 
+
+          -  dbt snapshot
         
-    7. Generate Documentation
-       - dbt docs generate
-       - dbt docs serve
+   7. Generate Documentation
+        
+          - dbt docs generate
+          - dbt docs serve
          
     8. Build Everything
-        - dbt build  **Runs models, tests, and snapshots**
+        - dbt build   (Runs models, tests, and snapshots)
 
 
 ## 🎯 Key Features
@@ -279,6 +286,7 @@ Common Issues
     3. Incremental Load Issues
        Run dbt run --full-refresh to rebuild from scratch
        Verify source data timestamps
+
 
 
 
