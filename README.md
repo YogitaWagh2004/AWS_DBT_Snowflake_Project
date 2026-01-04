@@ -49,17 +49,20 @@ Bronze Layer → Silver Layer → Gold Layer
 
    ### Medallion Architecture
    
-   **🥉 Bronze Layer (Raw Data)**
-        Raw data ingested from staging with minimal transformations:
-           **bronze_bookings** - Raw booking transactions
-           **bronze_hosts** - Raw host information
-           **bronze_listings** - Raw property listings
+   **🥉 Bronze Layer (Raw Data)**:
+   Raw data ingested from staging with minimal transformations:
+         **bronze_bookings** - Raw booking transactions
+         **bronze_hosts** - Raw host information
+         **bronze_listings** - Raw property listings
 
-   **🥈 Silver Layer (Cleaned Data)**
-        Cleaned and standardized data:
-            **silver_bookings** - Validated booking records
-            **silver_hosts** - Enhanced host profiles with quality metrics
-            **silver_listings** - Standardized listing information with price categorization
+   **🥈 Silver Layer (Cleaned Data)**:
+   Cleaned and standardized data:
+   
+   **silver_bookings** - Validated booking records
+   
+   **silver_hosts** - Enhanced host profiles with quality metrics
+   
+   **silver_listings** - Standardized listing information with price categorization
 
    **🥇 Gold Layer (Analytics-Ready)**
         Business-ready datasets optimized for analytics:
@@ -243,6 +246,7 @@ Common Issues
     3. Incremental Load Issues
        Run dbt run --full-refresh to rebuild from scratch
        Verify source data timestamps
+
 
 
 
