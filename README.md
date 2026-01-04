@@ -1,4 +1,4 @@
-# 🏠 Airbnb End-to-End Data Engineering Project 
+# 🏠 AWS Data Analytics Pipeline Project 
 
 ## 📋 Overview
 
@@ -107,7 +107,6 @@ The pipeline processes Airbnb listings, bookings, and hosts data through a medal
       
            pip install -r requirements.txt
            pip install -e .
-
       
       ## Core Dependencies:
          - dbt-core>=1.11.2
@@ -116,35 +115,21 @@ The pipeline processes Airbnb listings, bookings, and hosts data through a medal
       
   4. Configure Snowflake Connection
 
-    Create ~/.dbt/profiles.yml:
+          aws_dbt_snowflake_project:
+             outputs:
+                dev:
+                  type: snowflake
+                  account: <your-account-identifier>
+                  user: <your-username>
+                  password: <your-password>
+                  role: ACCOUNTADMIN
+                  database: AIRBNB
+                  schema: dbt_schema
+                  warehouse: COMPUTE_WH
+                  threads: 4
+            target: dev
 
-        aws_dbt_snowflake_project:
-        
-         outputs:
-          
-           dev:
-        
-             account: <your-account-identifier>
-        
-             database: AIRBNB
-        
-             password: <your-password>
-          
-             role: ACCOUNTADMIN
-        
-             schema: dbt_schema
-
-             threads: 4
-
-             type: snowflake
-        
-             user: <your-username>
-          
-            warehouse: COMPUTE_WH
-        
-        target: dev
-
-  5. Set Up Snowflake Database
+  6. Set Up Snowflake Database
      Run the DDL scripts to create tables:
      **Execute DDL/ddl.sql in Snowflake to create staging tables**
 
@@ -187,15 +172,16 @@ Running dbt Commands
        
    6. Run Snapshots 
 
-            dbt snapshot
+          dbt snapshot
         
    7. Generate Documentation
         
-           dbt docs generate
-           dbt docs serve
+          dbt docs generate
+          dbt docs serve
          
-    8. Build Everything
-         dbt build   (Runs models, tests, and snapshots)
+   8. Build Everything
+    
+          dbt build   (Runs models, tests, and snapshots)
 
 
 ## 🎯 Key Features
@@ -222,11 +208,11 @@ The OBT (One Big Table) model uses Jinja loops for maintainable joins:
           SELECT {% for config in configs %}...{% endfor %}
 
 ## 4. Slowly Changing Dimensions
-Track historical changes with timestamp-based snapshots:
+- Track historical changes with timestamp-based snapshots:
 
-Valid from/to dates automatically maintained
+- Valid from/to dates automatically maintained
 
-Historical data preserved for point-in-time analysis
+- Historical data preserved for point-in-time analysis
 
 ## 5. Schema Organization
 Automatic schema separation by layer:
@@ -263,44 +249,73 @@ dbt automatically tracks data lineage, showing:
   - Source to consumption flow
 
 ## 🔐 Security & Best Practices
+
    1. Credentials Management
+      
        - Never commit profiles.yml with credentials
+         
        - Use environment variables for sensitive data
+         
        - Implement role-based access control (RBAC) in Snowflake
+         
    2. Code Quality
+ 
        - SQL formatting with sqlfmt
+        
        - Version control with Git
+         
        - Code reviews for model changes
 
    3. Performance Optimization
+      
       - Incremental models for large datasets
+        
       - Ephemeral models for intermediate transformations
+        
       - Appropriate clustering keys in Snowflake
 
 ## 🤝 Contributing
    1. Fork the repository
+      
    2. Create a feature branch (git checkout -b feature/AmazingFeature)
+      
    3. Commit your changes (git commit -m 'Add some AmazingFeature')
+    
    4. Push to the branch (git push origin feature/AmazingFeature)
+    
    5. Open a Pull Request
 
 ## 👤 Author
+
 - **Project**: Airbnb Data Engineering Pipeline
+- 
 - **Technologies**: Snowflake, dbt, AWS, Python
 
-## 🐛 Troubleshooting
+## 🐛 Troubleshooting: 
 Common Issues
-    1. Connection Error
-       Verify Snowflake credentials in profiles.yml
-       Check network connectivity
-       Ensure warehouse is running
-    2. Compilation Error
-       Run dbt debug to check configuration
-       Verify model dependencies
-       Check Jinja syntax
-    3. Incremental Load Issues
-       Run dbt run --full-refresh to rebuild from scratch
-       Verify source data timestamps
+
+1. Connection Error
+   
+      Verify Snowflake credentials in profiles.yml
+   
+      Check network connectivity
+   
+      Ensure warehouse is running
+   
+3. Compilation Error
+   
+      Run dbt debug to check configuration
+   
+      Verify model dependencies
+   
+      Check Jinja syntax
+   
+5. Incremental Load Issues
+   
+      Run dbt run --full-refresh to rebuild from scratch
+   
+      Verify source data timestamps
+
 
 
 
