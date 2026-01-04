@@ -33,12 +33,17 @@ Bronze Layer → Silver Layer → Gold Layer
    - **Version Control**: Git
    - **Python**: 3.11+
 
-   **Key dbt Features**:
-          - Incremental models
-          - Snapshots (SCD Type 2)
-          - Custom macros
-          - Jinja templating
-          - Testing and documentation
+**Key dbt Features**:
+   
+   - Incremental models
+          
+   - Snapshots (SCD Type 2)
+     
+   - Custom macros
+     
+   - Jinja templating
+     
+   - Testing and documentation
   
 ## 📊 Data Model
 
@@ -238,6 +243,7 @@ Common Issues
     3. Incremental Load Issues
        Run dbt run --full-refresh to rebuild from scratch
        Verify source data timestamps
+
 
 
 
