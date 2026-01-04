@@ -13,12 +13,15 @@ The pipeline processes Airbnb listings, bookings, and hosts data through a medal
 Source CSV Files
 
 ↓
+
 AWS S3
 
 ↓
+
 Snowflake (Staging)
 
 ↓
+
 Bronze Layer → Silver Layer → Gold Layer
 
 
@@ -235,6 +238,7 @@ Common Issues
     3. Incremental Load Issues
        Run dbt run --full-refresh to rebuild from scratch
        Verify source data timestamps
+
 
 
 
