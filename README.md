@@ -187,6 +187,7 @@ Running dbt Commands
 ## 🎯 Key Features
 
 ### 1. Incremental Loading: 
+
    Bronze and silver models use incremental materialization to process only new/changed data:
           
           {{ config(materialized='incremental') }}
@@ -195,6 +196,7 @@ Running dbt Commands
           {% endif %}
 
 ## 2. Custom Macros 
+
    Reusable business logic:
 
 - tag() macro: Categorizes prices into 'low', 'medium', 'high'
@@ -202,12 +204,14 @@ Running dbt Commands
        {{ tag('CAST(PRICE_PER_NIGHT AS INT)') }} AS PRICE_PER_NIGHT_TAG
 
 ## 3. Dynamic SQL Generation
+
 The OBT (One Big Table) model uses Jinja loops for maintainable joins:
           
           {% set configs = [...] %}
           SELECT {% for config in configs %}...{% endfor %}
 
 ## 4. Slowly Changing Dimensions
+
 - Track historical changes with timestamp-based snapshots:
 
 - Valid from/to dates automatically maintained
@@ -215,6 +219,7 @@ The OBT (One Big Table) model uses Jinja loops for maintainable joins:
 - Historical data preserved for point-in-time analysis
 
 ## 5. Schema Organization
+
 Automatic schema separation by layer:
 
     Bronze models → AIRBNB.BRONZE.*
@@ -238,6 +243,7 @@ Automatic schema separation by layer:
    - Custom business rule tests
     
 ## Data Lineage
+
 dbt automatically tracks data lineage, showing:
 
   - Upstream dependencies
@@ -275,6 +281,7 @@ dbt automatically tracks data lineage, showing:
       - Appropriate clustering keys in Snowflake
 
 ## 🤝 Contributing
+
    1. Fork the repository
       
    2. Create a feature branch (git checkout -b feature/AmazingFeature)
@@ -316,8 +323,13 @@ Common Issues
    
       Verify source data timestamps
 
+## 👋 About Me
 
+Hi there! I'm Yogita, I am a Data Engineer (Fresher) with a strong interest in building reliable and scalable data pipelines and data warehouses.I enjoy working with data from raw ingestion to business-ready models using SQL and modern data architecture principles. My mission is to continuously build knowledge through hands-on projects, learn industry best practices, and grow as a data professional. I am passionate about data quality, clean transformations, and enabling meaningful analytics. Actively seeking opportunities to learn, contribute, and evolve as a Data Engineer.
 
+Let's stay in touch!
+
+🔗 LinkedIn: https://www.linkedin.com/in/yogita-wagh-775632327/
 
 
 
