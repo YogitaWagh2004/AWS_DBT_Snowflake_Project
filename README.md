@@ -116,7 +116,7 @@ Bronze Layer → Silver Layer → Gold Layer
       
   4. Configure Snowflake Connection
 
-      - Create ~/.dbt/profiles.yml:
+     - Create ~/.dbt/profiles.yml:
 
         aws_dbt_snowflake_project:
         
@@ -176,10 +176,10 @@ Running dbt Commands
     
    5. Run Tests
        - dbt test
-      
+       -
    6. Run Snapshots 
       -  dbt snapshot
-        
+      - 
    7. Generate Documentation
        - dbt docs generate
        - dbt docs serve
@@ -276,6 +276,7 @@ Common Issues
     3. Incremental Load Issues
        Run dbt run --full-refresh to rebuild from scratch
        Verify source data timestamps
+
 
 
 
