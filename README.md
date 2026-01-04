@@ -7,11 +7,17 @@ This project implements a complete end-to-end data engineering pipeline for Airb
 The pipeline processes Airbnb listings, bookings, and hosts data through a medallion architecture (Bronze → Silver → Gold), implementing incremental loading, slowly changing dimensions (SCD Type 2), and creating analytics-ready datasets.
 
 ## 🏗️ Architecture
-**Data Flow**
 
-Source Data (CSV) → AWS S3 → Snowflake (Staging) → Bronze Layer → Silver Layer → Gold Layer
-                                                           ↓              ↓           ↓
-                                                      Raw Tables    Cleaned Data   Analytics
+### Data Flow
+
+Source CSV Files
+↓
+AWS S3
+↓
+Snowflake (Staging)
+↓
+Bronze Layer → Silver Layer → Gold Layer
+
 
 
 ## Technology Stack
@@ -20,6 +26,7 @@ Source Data (CSV) → AWS S3 → Snowflake (Staging) → Bronze Layer → Silver
 - **Cloud Storage**: AWS S3 
 - **Version Control**: Git
 - **Python**: 3.11+
+
 **Key dbt Features**:
           - Incremental models
           - Snapshots (SCD Type 2)
@@ -58,14 +65,14 @@ Slowly Changing Dimensions to track historical changes:
 **dim_hosts** - Historical host profile changes
 **dim_listings** - Historical listing changes
 
-# 🚀 Getting Started
+## 🚀 Getting Started
 
 ## Prerequisites
    1. Snowflake Account (will create one if doesn't exist)
    2. Python Environment
        Python 3.11 or higher
        pip or uv package manager
-   3.**AWS Account (will create one if doesn't exist)** (for S3 storage)
+   3. **AWS Account (will create one if doesn't exist)** (for S3 storage)
 
 ## Installation
    1. Clone the Repository
@@ -80,7 +87,6 @@ Slowly Changing Dimensions to track historical changes:
 
    3. Install Dependencies
       pip install -r requirements.txt
-      # or using pyproject.toml
       pip install -e .
 
       
@@ -89,7 +95,7 @@ Slowly Changing Dimensions to track historical changes:
         dbt-snowflake>=1.11.0
         sqlfmt>=0.0.3
       
-  4.Configure Snowflake Connection
+  4. Configure Snowflake Connection
     Create ~/.dbt/profiles.yml:
 
   aws_dbt_snowflake_project:
@@ -118,7 +124,7 @@ Slowly Changing Dimensions to track historical changes:
      hosts.csv → AIRBNB.STAGING.HOSTS
      listings.csv → AIRBNB.STAGING.LISTINGS
    
-# 🔧 Usage
+## 🔧 Usage
 Running dbt Commands
 
 1. Test Connection
@@ -132,9 +138,9 @@ Running dbt Commands
    dbt run
 
 4. Run Specific Layer
-   dbt run --select bronze.*      # Run bronze models only
-   dbt run --select silver.*      # Run silver models only
-   dbt run --select gold.*        # Run gold models only
+   dbt run --select bronze.*      -  Run bronze models only
+   dbt run --select silver.*      -  Run silver models only
+   dbt run --select gold.*        - Run gold models only
 
 5. Run Tests
    dbt test
@@ -150,7 +156,7 @@ Running dbt Commands
    dbt build  **Runs models, tests, and snapshots**
 
 
-# 🎯 Key Features
+## 🎯 Key Features
 
 ## 1. Incremental Loading: 
 Bronze and silver models use incremental materialization to process only new/changed data:
@@ -244,5 +250,6 @@ Common Issues
     3. Incremental Load Issues
        Run dbt run --full-refresh to rebuild from scratch
        Verify source data timestamps
+
 
 
